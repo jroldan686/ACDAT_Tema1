@@ -1,0 +1,158 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="jrl.acdat.acdat_tema1.Ejercicio5"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/txvSalida"
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:background="#c1d1e6"
+        android:gravity="right"
+        android:maxLength="18"
+        android:text="0"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="55dp" />
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/btnSiete"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="7" />
+
+        <Button
+            android:id="@+id/btnOcho"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="8" />
+
+        <Button
+            android:id="@+id/btnNueve"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="9" />
+
+        <Button
+            android:id="@+id/btnDivision"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="/" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/btnCuatro"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="4" />
+
+        <Button
+            android:id="@+id/btnCinco"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="5" />
+
+        <Button
+            android:id="@+id/btnSeis"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="6" />
+
+        <Button
+            android:id="@+id/btnProducto"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="*" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/btnUno"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/btnDos"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="2" />
+
+        <Button
+            android:id="@+id/btnTres"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="3" />
+
+        <Button
+            android:id="@+id/btnResta"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="-" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/btnCero"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/btnPunto"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="." />
+
+        <Button
+            android:id="@+id/btnIgual"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="=" />
+
+        <Button
+            android:id="@+id/btnSuma"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="+" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnReiniciar"
+        android:layout_width="240dp"
+        android:layout_height="63dp"
+        android:text="C"
+        android:layout_marginLeft="44dp" />
+
+    <Button
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnVolver"
+        android:layout_marginLeft="44dp"
+        android:text="Volver" />
+
+</LinearLayout>
