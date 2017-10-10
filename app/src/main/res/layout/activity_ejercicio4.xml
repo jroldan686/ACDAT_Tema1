@@ -5,92 +5,154 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="jrl.acdat.acdat_tema1.Ejercicio4">
+    tools:context="jrl.acdat.acdat_tema1.Ejercicio4"
+    android:weightSum="1">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/txvCafes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.61"
-            android:text="Cafés"
-            android:paddingLeft="30dp"
-            android:textSize="25dp" />
-
-        <TextView
-            android:id="@+id/txvContador"
-            android:layout_width="73dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.44"
-            android:gravity="right"
-            android:text="0"
-            android:textSize="25dp"
-            android:paddingRight="50dp" />
-
-        <Button
-            android:id="@+id/btnResetear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="R" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Volver"
-            android:id="@+id/btnVolver" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-
-        <Switch
-            android:text="Ascendente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/swtAscendente"
-            android:layout_weight="1"
-            android:gravity="right" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/txvSalida"
+        android:layout_width="215dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1.03"
-        android:gravity="center_horizontal|center" >
+        android:background="#c1d1e6"
+        android:gravity="right"
+        android:maxLength="18"
+        android:text="0"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="55dp" />
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
 
         <Button
-            android:id="@+id/btnMenos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btnSiete"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="7" />
+
+        <Button
+            android:id="@+id/btnOcho"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="8" />
+
+        <Button
+            android:id="@+id/btnNueve"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="9" />
+
+        <Button
+            android:id="@+id/btnDivision"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="/" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/btnCuatro"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="4" />
+
+        <Button
+            android:id="@+id/btnCinco"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="5" />
+
+        <Button
+            android:id="@+id/btnSeis"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="6" />
+
+        <Button
+            android:id="@+id/btnProducto"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="*" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/btnUno"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/btnDos"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="2" />
+
+        <Button
+            android:id="@+id/btnTres"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="3" />
+
+        <Button
+            android:id="@+id/btnResta"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:text="-" />
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/txvTiempo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.23"
-            android:gravity="center"
-            android:text="00:00"
-            android:textSize="40dp" />
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
 
         <Button
-            android:id="@+id/btnMas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btnCero"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/btnPunto"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="." />
+
+        <Button
+            android:id="@+id/btnIgual"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="=" />
+
+        <Button
+            android:id="@+id/btnSuma"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:text="+" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnComenzar"
-        android:layout_width="match_parent"
+        android:id="@+id/btnReiniciar"
+        android:layout_width="240dp"
+        android:layout_height="63dp"
+        android:text="C"
+        android:layout_marginLeft="44dp" />
+
+    <Button
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Comenzar" />
+        android:id="@+id/btnVolver"
+        android:layout_marginLeft="44dp"
+        android:text="Volver" />
 
 </LinearLayout>

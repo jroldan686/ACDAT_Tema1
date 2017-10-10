@@ -7,38 +7,90 @@
     android:orientation="vertical"
     tools:context="jrl.acdat.acdat_tema1.Ejercicio3">
 
-    <TextView
-        android:id="@+id/txvURL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Indique un sitio web:"
-        android:textSize="20dp" />
-
-    <EditText
-        android:id="@+id/edtURL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10">
-
-        <requestFocus />
-    </EditText>
-
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/txvCafes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.61"
+            android:text="Cafés"
+            android:paddingLeft="30dp"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/txvContador"
+            android:layout_width="73dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.44"
+            android:gravity="right"
+            android:text="0"
+            android:textSize="25dp"
+            android:paddingRight="50dp" />
 
         <Button
-            android:id="@+id/btnIr"
-            android:layout_width="77dp"
+            android:id="@+id/btnResetear"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ir" />
+            android:text="R" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Volver"
             android:id="@+id/btnVolver" />
+
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <Switch
+            android:text="Ascendente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/swtAscendente"
+            android:layout_weight="1"
+            android:gravity="right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.03"
+        android:gravity="center_horizontal|center" >
+
+        <Button
+            android:id="@+id/btnMenos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/txvTiempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.23"
+            android:gravity="center"
+            android:text="00:00"
+            android:textSize="40dp" />
+
+        <Button
+            android:id="@+id/btnMas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnComenzar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Comenzar" />
 
 </LinearLayout>

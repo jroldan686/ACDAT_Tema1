@@ -12,7 +12,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
     Button btnEjercicio2;
     Button btnEjercicio3;
     Button btnEjercicio4;
-    Button btnEjercicio5;
     Intent i;
 
     @Override
@@ -31,9 +30,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         btnEjercicio4 = (Button)findViewById(R.id.btnEjercicio4);
         btnEjercicio4.setOnClickListener(this);
-
-        btnEjercicio5 = (Button)findViewById(R.id.btnEjercicio5);
-        btnEjercicio5.setOnClickListener(this);
     }
 
     @Override
@@ -49,9 +45,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
         if(v == btnEjercicio4) {
             i = new Intent(this, Ejercicio4.class);
-        }
-        if(v == btnEjercicio5) {
-            i = new Intent(this, Ejercicio5.class);
         }
         startActivity(i);
     }

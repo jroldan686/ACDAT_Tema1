@@ -1,199 +1,235 @@
 package jrl.acdat.acdat_tema1;
 
-
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Ejercicio4 extends Activity implements View.OnClickListener {
+public class Ejercicio4 extends Activity implements OnClickListener {
 
-    TextView cafes, tiempo;
-    Button menos, mas, comenzar, resetear, volver;
-    Switch ascendente;
-    int contadorCafes, contadorTiempo;
-    MyCountDownTimer miContador;
-    MediaPlayer mp;
-    AlertDialog.Builder popup;
-    long milisegundos;
-    boolean esTerminado, esFinalApp;
+    boolean puntoAct = false;
+    boolean op2Act = false;
+    double op1 = 0.0;
+    double op2 = 0.0;
+    char operador;
+    String resultado = "0";
+    String texto = "0";
+    Button reiniciar, punto, igual, suma, resta, producto, division;
+    Button cero, uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve;
+    Button volver;
+    TextView salida;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ejercicio4);
 
-        cafes = (TextView) findViewById(R.id.txvContador);
-        tiempo = (TextView) findViewById(R.id.txvTiempo);
-        menos = (Button) findViewById(R.id.btnMenos);
-        menos.setOnClickListener(this);
-        mas = (Button) findViewById(R.id.btnMas);
-        mas.setOnClickListener(this);
-        comenzar = (Button) findViewById(R.id.btnComenzar);
-        comenzar.setOnClickListener(this);
-        mp = MediaPlayer.create(this, R.raw.silbato);
-        resetear = (Button)findViewById(R.id.btnResetear);
-        resetear.setOnClickListener(this);
+        salida = (TextView)findViewById(R.id.txvSalida);
+        reiniciar = (Button)findViewById(R.id.btnReiniciar);
+        reiniciar.setOnClickListener(this);
+        punto = (Button)findViewById(R.id.btnPunto);
+        punto.setOnClickListener(this);
+        igual = (Button)findViewById(R.id.btnIgual);
+        igual.setOnClickListener(this);
+        suma = (Button)findViewById(R.id.btnSuma);
+        suma.setOnClickListener(this);
+        resta = (Button)findViewById(R.id.btnResta);
+        resta.setOnClickListener(this);
+        producto = (Button)findViewById(R.id.btnProducto);
+        producto.setOnClickListener(this);
+        division = (Button)findViewById(R.id.btnDivision);
+        division.setOnClickListener(this);
+        cero = (Button)findViewById(R.id.btnCero);
+        cero.setOnClickListener(this);
+        uno = (Button)findViewById(R.id.btnUno);
+        uno.setOnClickListener(this);
+        dos = (Button)findViewById(R.id.btnDos);
+        dos.setOnClickListener(this);
+        tres = (Button)findViewById(R.id.btnTres);
+        tres.setOnClickListener(this);
+        cuatro = (Button)findViewById(R.id.btnCuatro);
+        cuatro.setOnClickListener(this);
+        cinco = (Button)findViewById(R.id.btnCinco);
+        cinco.setOnClickListener(this);
+        seis = (Button)findViewById(R.id.btnSeis);
+        seis.setOnClickListener(this);
+        siete = (Button)findViewById(R.id.btnSiete);
+        siete.setOnClickListener(this);
+        ocho = (Button)findViewById(R.id.btnOcho);
+        ocho.setOnClickListener(this);
+        nueve = (Button)findViewById(R.id.btnNueve);
+        nueve.setOnClickListener(this);
+
         volver = (Button)findViewById(R.id.btnVolver);
         volver.setOnClickListener(this);
-        ascendente = (Switch)findViewById(R.id.swtAscendente);
-        popup = new AlertDialog.Builder(this);
 
-        ponerCafes(0);
-        ponerTiempo(5);
-        esTerminado = false;
-        esFinalApp = false;
+        suma.setEnabled(true);
+        resta.setEnabled(true);
+        producto.setEnabled(true);
+        division.setEnabled(true);
+        igual.setEnabled(false);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState){
-        super.onSaveInstanceState(outState);
-        outState.putInt("CONTADORCAFES", contadorCafes);
-        outState.putInt("CONTADORTIEMPO", contadorTiempo);
-        outState.putLong("MILISEGUNDOS", milisegundos);
-        outState.putBoolean("ESTERMINADO", esTerminado);
-        if(esTerminado)
-            outState.putString("PAUSATERMINADA", String.valueOf(tiempo.getText()));
-        try {
-            mp.stop();
-            miContador.cancel();
-        } catch (Exception ex) {
-            // Excepción producida porque el contador no ha sido iniciado
-        }
+    public double leerNumero(String cadena) {
+        return Double.parseDouble(cadena);
     }
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState){
-        super.onRestoreInstanceState(savedInstanceState);
-        contadorCafes = savedInstanceState.getInt("CONTADORCAFES");
-        contadorTiempo = savedInstanceState.getInt("CONTADORTIEMPO");
-        milisegundos = savedInstanceState.getLong("MILISEGUNDOS");
-        esTerminado = savedInstanceState.getBoolean("ESTERMINADO");
-        cafes.setText(String.valueOf(contadorCafes));
-        if(!esTerminado) {
-            menos.setEnabled(false);
-            mas.setEnabled(false);
-            comenzar.setEnabled(false);
-            miContador = new MyCountDownTimer(milisegundos, 1000);
-            miContador.start();
+    public String formatearNumero(double numero) {
+        if(String.valueOf(numero).length()>=18) {
+            return String.format("%6.10g", numero);
         } else {
-            tiempo.setText(savedInstanceState.getString("PAUSATERMINADA"));
+            if (numero == 0 || Double.valueOf(String.format("%.0f", numero)) / numero == 1)
+                return String.format("%.0f", numero);
+            else
+                return String.valueOf(numero);
         }
     }
 
-    private void ponerTiempo(int num) {
-        if(num > 99)
-            num = 99;
-        if(num < 1)
-            num = 1;
-        contadorTiempo = num;
-        if(num < 10)
-            tiempo.setText("0" + num + ":00");
-        else
-            tiempo.setText(num + " :00");
-    }
-
-    private void ponerCafes(int num) {
-        contadorCafes = num;
-        cafes.setText(String.valueOf(num));
+    public String calcular(double op1, char operador, double op2) {
+        Toast mensaje;
+        switch(operador) {
+            case '+': return String.valueOf(op1 + op2);
+            case '-': return String.valueOf(op1 - op2);
+            case '*': return String.valueOf(op1 * op2);
+            case '/':
+                if (op2 == 0) {
+                    mensaje = Toast.makeText(this, "No se puede dividir por cero", Toast.LENGTH_SHORT);
+                    mensaje.show();
+                    return "0";
+                } else {
+                    return String.valueOf(op1 / op2);
+                }
+            default:
+                mensaje = Toast.makeText(this, "Operador no válido", Toast.LENGTH_SHORT);
+                mensaje.show();
+                return "0";
+        }
     }
 
     @Override
     public void onClick(View v) {
-        if(v == volver) {
-            try {
-                mp.stop();
-                miContador.cancel();
-            } catch (Exception ex) {
-                // Excepción producida porque el contador no ha sido iniciado
-            } finally {
-                finish();
+        if (v == volver) {
+            finish();
+        }
+        if (v == reiniciar) {
+            puntoAct = false;
+            op2Act = false;
+            resultado = "0";
+            texto = "0";
+            op1 = 0;
+            op2 = 0;
+            salida.setText(texto);
+        }
+        if (v == suma || v == resta || v == producto || v == division || v == igual) {
+            puntoAct = false;
+            if (v == suma) {
+                operador = '+';
             }
-        }
-        if(v == menos) {
-            ponerTiempo(contadorTiempo - 1);
-        }
-        if(v == mas) {
-            ponerTiempo(contadorTiempo + 1);
-        }
-        if(v == comenzar) {
-            esTerminado = false;
-            menos.setEnabled(false);
-            mas.setEnabled(false);
-            comenzar.setEnabled(false);
-            miContador = new MyCountDownTimer(contadorTiempo * 60 * 1000, 1000);
-            miContador.start();
-        }
-        if(v == resetear) {
-            contadorCafes = 0;
-            ponerCafes(contadorCafes);
-            if(esFinalApp) {
-                ponerTiempo(5);
-                menos.setEnabled(true);
-                mas.setEnabled(true);
-                comenzar.setEnabled(true);
-                esFinalApp = false;
+            if (v == resta) {
+                operador = '-';
             }
+            if (v == producto) {
+                operador = '*';
+            }
+            if (v == division) {
+                operador = '/';
+            }
+            if (v == igual) {
+                resultado = calcular(op1, operador, op2);
+                salida.setText(formatearNumero(Double.valueOf(resultado)));
+                op1 = Double.valueOf(resultado);
+            }
+            op2Act = !op2Act;
+            texto = "0";
         }
-    }
 
-    public class MyCountDownTimer extends CountDownTimer {
+        // Números
 
-        private long tiempoTotal;
-
-        public MyCountDownTimer(long startTime, long interval) {
-            super(startTime, interval);
-            tiempoTotal = startTime;
+        if (v == cero) {
+            if(!texto.equals("0") && !texto.equals(""))
+                texto += "0";
+            salida.setText(texto);
         }
-        @Override
-        public void onTick(long millisUntilFinished) {
-            String min;
-            String seg;
-            int minutos;
-            int segundos;
-            milisegundos = millisUntilFinished;
-            if(ascendente.isChecked())
-            {
-                minutos = (int)(((tiempoTotal - millisUntilFinished) / 1000) / 60);
-                segundos = (int)(((tiempoTotal - millisUntilFinished) / 1000) % 60);
-            } else {
-                minutos = (int) ((millisUntilFinished / 1000) / 60);
-                segundos = (int) ((millisUntilFinished / 1000) % 60);
-            }
-            if(minutos < 10)
-                min = "0" + String.valueOf(minutos);
-            else
-                min = String.valueOf(minutos);
-            if(segundos < 10)
-                seg = "0" + String.valueOf(segundos);
-            else
-                seg = String.valueOf(segundos);
-            tiempo.setText(min + ":" + seg);
+        if (v == uno) {
+            if (texto.equals("0"))
+                texto = "";
+            texto += "1";
+            salida.setText(texto);
         }
-        @Override
-        public void onFinish() {
-            esTerminado = true;
-            tiempo.setText("Pausa terminada!!");
-            if(contadorCafes < 9) {
-                ponerCafes(contadorCafes + 1);
-                menos.setEnabled(true);
-                mas.setEnabled(true);
-                comenzar.setEnabled(true);
+        if (v == dos) {
+            if (texto.equals("0"))
+                texto = "";
+            texto += "2";
+            salida.setText(texto);
+        }
+        if (v == tres) {
+            if (texto.equals("0"))
+                texto = "";
+            texto += "3";
+            salida.setText(texto);
+        }
+        if (v == cuatro) {
+            if (texto.equals("0"))
+                texto = "";
+            texto += "4";
+            salida.setText(texto);
+        }
+        if (v == cinco) {
+            if (texto.equals("0"))
+                texto = "";
+            texto += "5";
+            salida.setText(texto);
+        }
+        if (v == seis) {
+            if (texto.equals("0"))
+                texto = "";
+            texto += "6";
+            salida.setText(texto);
+        }
+        if (v == siete) {
+            if (texto.equals("0"))
+                texto = "";
+            texto += "7";
+            salida.setText(texto);
+        }
+        if (v == ocho) {
+            if (texto.equals("0"))
+                texto = "";
+            texto += "8";
+            salida.setText(texto);
+        }
+        if (v == nueve) {
+            if (texto.equals("0"))
+                texto = "";
+            texto += "9";
+            salida.setText(texto);
+        }
+        if (v == punto) {
+            if (!puntoAct) {
+                texto += ".";
+                puntoAct = true;
             }
-            else {
-                esFinalApp = true;
-                popup.setTitle("Aplicación finalizada");
-                popup.setMessage("Fin!!");
-                popup.setPositiveButton("Cerrar", null);
-                popup.show();
-                mp.stop();
+            salida.setText(texto);
+        }
+        if (op2Act) {
+            op2 = leerNumero(texto);
+            suma.setEnabled(false);
+            resta.setEnabled(false);
+            producto.setEnabled(false);
+            division.setEnabled(false);
+            igual.setEnabled(true);
+        } else {
+            if(Double.valueOf(resultado) == 0) {
+                op1 = leerNumero(texto);
             }
-            mp.start();
+            suma.setEnabled(true);
+            resta.setEnabled(true);
+            producto.setEnabled(true);
+            division.setEnabled(true);
+            igual.setEnabled(false);
         }
     }
 }

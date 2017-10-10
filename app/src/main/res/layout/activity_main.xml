@@ -34,11 +34,4 @@
         android:id="@+id/btnEjercicio4"
         android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ejercicio 5"
-        android:id="@+id/btnEjercicio5"
-        android:layout_gravity="center_horizontal" />
-
 </LinearLayout>
